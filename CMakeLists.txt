@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
-project(raylib_base C)
+project(raylib-base C)
 
 set(CMAKE_C_STANDARD 11)
-
-
-#
 
 include(FetchContent)
 FetchContent_Declare(
@@ -14,6 +11,15 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-add_executable(raylib_base main.c)
-target_link_libraries(raylib_base raylib)
+add_executable(raylib-base src/main.c)
+target_link_libraries(raylib-base raylib)
+
+# Create a testing build with the TESTING compile flag
+add_executable(raylib-base-test src/main.c)
+target_link_libraries(raylib-base-test raylib)
+target_compile_definitions(raylib-base-test PRIVATE TESTING)
+set_target_properties(raylib-base-test PROPERTIES COMPILE_FLAGS "-O0 -g")
+
+
+enable_testing()
 

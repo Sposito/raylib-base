@@ -83,11 +83,6 @@ def get_payload(flags:list[str]) -> list[str]:
 
 @dataclass()
 class Flag:
-    # flag_list: list[str]
-    # present: bool
-    # index: bool
-    # payload: str = field(default_factory=lambda: "any" )
-    # expect_payload: bool = False
     def __init__(self, flag_list, expect_payload=False):
         self.flag_list = flag_list
         self.expect_payload = expect_payload

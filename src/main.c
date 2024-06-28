@@ -1,13 +1,18 @@
 #include <raylib.h>
-#include <stdio.h>
+#include<stdio.h>
 #include <string.h>
+//#include <src/cmd_handler.h>
 
+#define TESTING
 
-
-int main(void) {
+int main(int argc, char *argv[]) {
+    const char* timeOutFlag = "--timeout";
     const int width = 800;
     const int height = 480;
 #ifdef TESTING
+    for(int i = 0; i < argc; i++) {
+
+    }
     const double timeout = 5.0;
     printf("INFO: [TIMEOUT] = %f", timeout);
 #endif

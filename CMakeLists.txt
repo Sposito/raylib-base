@@ -11,15 +11,24 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-add_executable(raylib-base src/main.c)
+add_executable(raylib-base src/main.c
+        src/cmd_handler.h
+        src/utils.h)
 target_link_libraries(raylib-base raylib)
 
 # Create a testing build with the TESTING compile flag
-add_executable(raylib-base-test src/main.c)
+add_executable(raylib-base-test src/main.c
+        src/cmd_handler.h
+        src/utils.h)
 target_link_libraries(raylib-base-test raylib)
 target_compile_definitions(raylib-base-test PRIVATE TESTING)
 set_target_properties(raylib-base-test PROPERTIES COMPILE_FLAGS "-O0 -g")
 
 
 enable_testing()
+find_package (Python COMPONENTS Interpreter Development)
 
+# TESTS BEGIN
+add_test(NAME OpenClose COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/run_test.py --test open_close)
+set_tests_properties(OpenClose PROPERTIES TIMEOUT 30)
+# TESTS END
